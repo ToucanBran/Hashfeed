@@ -12,6 +12,7 @@ import javafx.util.Duration;
 
 public class SimpleSlideShow {
 private StackPane root = new StackPane();
+private SequentialTransition slideshow;
 	
 	public StackPane getRoot()
 	{
@@ -28,9 +29,12 @@ private StackPane root = new StackPane();
 
 	  }
 
-
+	public SequentialTransition getSlideShow()
+	{
+		return slideshow;
+	}
 	public void start() {
-		SequentialTransition slideshow = new SequentialTransition();
+		slideshow = new SequentialTransition();
 		
 		File[] pictureFiles = new File("main/resources/").listFiles();
 		
@@ -39,10 +43,12 @@ private StackPane root = new StackPane();
 			SequentialTransition sequentialTransition = new SequentialTransition();
 			Image image = new Image(file.toURI().toString());
 			ImageView slide = new ImageView(image);
+			slide.setPreserveRatio(true);
+			slide.setFitHeight(750);
 			FadeTransition fadeIn = getFadeTransition(slide, 0.0, 1.0, 2000);
-	        PauseTransition stayOn = new PauseTransition(Duration.millis(2000));
+	        PauseTransition stayOn = new PauseTransition(Duration.millis(4000));
 	        FadeTransition fadeOut = getFadeTransition(slide, 1.0, 0.0, 2000);
-
+	        
 	        sequentialTransition.getChildren().addAll(fadeIn, stayOn, fadeOut);
 	        slide.setOpacity(0);
 	        root.getChildren().add(slide);
