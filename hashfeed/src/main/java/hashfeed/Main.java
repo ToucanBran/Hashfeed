@@ -9,6 +9,8 @@ import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,42 +29,14 @@ import javafx.stage.Stage;
 		}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		String[] hashtags = {"fitness"};
-		final Thread gp = new Thread(new PictureGatherer(hashtags));
-		gp.start();
-		final SimpleSlideShow simpleSlideShow = new SimpleSlideShow();
-		Scene scene = new Scene(simpleSlideShow.getRoot());
-		primaryStage.setMaximized(true);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("HashFeedScene.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
 	    primaryStage.setScene(scene);
-	    simpleSlideShow.getRoot().setStyle("-fx-background-color: black");
 	    primaryStage.show();
-	    
-	    Timer timer = new Timer();
-	    simpleSlideShow.start();
-	 
-	    
-	   timer.schedule(new TimerTask(){
 
-			@Override
-			public void run() {
-				Platform.runLater(new Runnable(){
-
-					public void run() {
-						// TODO Auto-generated method stub
-						if (simpleSlideShow.getSlideShow().getStatus() != Animation.Status.RUNNING){
-							   System.out.println("Starting...");
-							   simpleSlideShow.start();
-							   System.out.println(gp.isAlive());
-						}
-					}
-					
-				});
-			}
-	    	
-	    },1000,1000);
-	   
-		
-		
-	}	
 	}
+	    
+	
+}
 
