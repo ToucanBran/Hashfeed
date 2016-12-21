@@ -8,7 +8,6 @@ For my wedding, I wanted a way to let our guests be the photographers and have t
 <li>GSON</li>
 <li>Java</li>
 <li>JSoup</li>
-<li>MySQL</li>
 </ul>
 
 # Side note

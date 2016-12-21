@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import javafx.animation.Animation;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainController {
 	
@@ -27,6 +29,7 @@ public class MainController {
 		hashtags = userInput.getText().split(",");
 		
 		final Thread gp = new Thread(new PictureGatherer(hashtags));
+		gp.setDaemon(true);
 		gp.start();
 		setupNewStage();
 		runSlideShow(simpleSlideShow);
@@ -42,8 +45,17 @@ public class MainController {
 		
 		stageRef = (Stage) goButton.getScene().getWindow();
 		stageRef.close();
+		newStage.setMaximized(true);
 		
 		newStage.show();
+		newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	        
+	        public void handle(WindowEvent e) {
+	           Platform.exit();
+	           System.exit(0);
+	        }
+	     });
+		
 	}
 	/*
 	 * runSlideShow: function 

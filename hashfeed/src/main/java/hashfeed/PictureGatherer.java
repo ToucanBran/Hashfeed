@@ -75,6 +75,7 @@ public class PictureGatherer implements Runnable{
 				String pictureExt = ".png";
 				File destination = new File(baseFile + pictureName + pictureExt);
 				
+				//checks if file doesn't already exist
 				if(!destination.exists())
 					FileUtils.copyURLToFile(picSrc, destination);
 			}
