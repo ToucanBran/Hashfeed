@@ -28,6 +28,7 @@ public class MainController {
 	{
 		hashtags = userInput.getText().split(",");
 		
+		//creates picture gatherer thread
 		final Thread gp = new Thread(new PictureGatherer(hashtags));
 		gp.setDaemon(true);
 		gp.start();
