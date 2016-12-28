@@ -3,11 +3,9 @@
 
 For my wedding, I wanted a way to let our guests be the photographers and have their work shown off. This project's main goal is to provide a way of gathering recent Instagram photos with a certain hashtag and displaying them in slideshow format. 
 
-# Technologies
+# Technologie(s)
 <ul>
-<li>GSON</li>
 <li>Java</li>
-<li>JSoup</li>
 </ul>
 
 # Side note
