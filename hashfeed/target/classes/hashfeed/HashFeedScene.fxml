@@ -17,7 +17,7 @@
               <children>
                 <GridPane prefHeight="133.0" prefWidth="200.0">
                   <children>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter in hashtags, separate using commas:" textAlignment="CENTER" wrappingWidth="210.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Text fx:id="instructionText" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter in hashtags, separate using commas:" textAlignment="CENTER" wrappingWidth="210.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                     <TextField fx:id="userInput" alignment="CENTER_LEFT" maxWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                     <Button fx:id="goButton" mnemonicParsing="false" onAction="#buttonPushed" text="Go!" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   </children>

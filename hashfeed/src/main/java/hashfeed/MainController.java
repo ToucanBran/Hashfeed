@@ -1,5 +1,6 @@
 package hashfeed;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,6 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -19,21 +23,28 @@ public class MainController {
 	
 	@FXML TextField userInput;
 	@FXML Button goButton;
+	@FXML Text instructionText;
 	private String[] hashtags;
 	private SimpleSlideShow simpleSlideShow;
 	private Scene scene; 
 	private Stage stageRef, newStage;
 	
-	public void buttonPushed()
+	@SuppressWarnings("unused")
+    public void buttonPushed()
 	{
 		hashtags = userInput.getText().split(",");
-		
-		//creates picture gatherer thread
-		final Thread gp = new Thread(new PictureGatherer(hashtags));
-		gp.setDaemon(true);
-		gp.start();
-		setupNewStage();
-		runSlideShow(simpleSlideShow);
+		if (hashtags.length > 0 && !hashtags[0].equals(""))
+		{   
+    		//creates picture gatherer thread
+		    new File("main/resources/").mkdir();
+    		final Thread gp = new Thread(new PictureGatherer(hashtags));
+    		gp.setDaemon(true);
+    		gp.start();
+    		setupNewStage();
+    		runSlideShow(simpleSlideShow);
+		}
+		instructionText.setText("Invalid text. Enter in hashtags, separate using commas");
+		instructionText.setFill(Color.RED);
 	}
 	
 	public void setupNewStage()
